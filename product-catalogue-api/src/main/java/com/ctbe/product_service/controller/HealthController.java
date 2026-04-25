@@ -1,4 +1,4 @@
-package com.ctbe.productservice.controller;
+package com.ctbe.product_service.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

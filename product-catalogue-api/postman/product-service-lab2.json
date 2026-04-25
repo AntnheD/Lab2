@@ -1,0 +1,220 @@
+{
+  "info": {
+    "name": "product-service-lab2",
+    "description": "RESTful Product Catalogue API - Lab 2 Postman Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        },
+        "description": "List all products."
+      },
+      "response": []
+    },
+    {
+      "name": "GET Product by ID (Valid)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "1"
+          ]
+        },
+        "description": "Get by ID — valid ID (200 OK)."
+      },
+      "response": []
+    },
+    {
+      "name": "GET Product by ID (Invalid)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/9999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "9999"
+          ]
+        },
+        "description": "Get by ID — invalid ID (404 Not Found)."
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Product (Valid)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Gaming Mouse\", \"price\": 49.99, \"stockQty\": 100, \"category\": \"Electronics\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        },
+        "description": "Body: valid product JSON (201 Created)."
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Product (Invalid)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"\", \"price\": 49.99, \"stockQty\": 100, \"category\": \"Electronics\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        },
+        "description": "Body: blank name to test validation (400 Bad Request)."
+      },
+      "response": []
+    },
+    {
+      "name": "PUT Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Gaming Mouse Pro\", \"price\": 59.99, \"stockQty\": 75, \"category\": \"Electronics\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "1"
+          ]
+        },
+        "description": "Update with new values (200 OK)."
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Product (Valid)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "1"
+          ]
+        },
+        "description": "Delete existing product (204 No Content)."
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Product (Invalid)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/9999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "9999"
+          ]
+        },
+        "description": "Delete non-existent product (404 Not Found)."
+      },
+      "response": []
+    }
+  ]
+}

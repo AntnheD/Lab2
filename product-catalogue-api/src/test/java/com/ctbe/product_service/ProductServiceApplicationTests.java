@@ -1,4 +1,4 @@
-package com.ctbe.productservice;
+package com.ctbe.product_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
