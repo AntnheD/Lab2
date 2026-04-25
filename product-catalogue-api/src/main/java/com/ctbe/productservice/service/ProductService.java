@@ -2,40 +2,32 @@ package com.ctbe.productservice.service;
 
 import com.ctbe.productservice.model.Product;
 import com.ctbe.productservice.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
-
     private final ProductRepository productRepository;
 
-    public List<Product> getAllProducts() {
+    // Constructor injection — preferred over @Autowired on a field
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    /** Return all products from the database. */
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Long id) {
+    /** Return a single product by ID, or empty if not found. */
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
 
-    public Product createProduct(Product product) {
+    /** Persist a new or updated product and return the saved entity. */
+    public Product save(Product product) {
         return productRepository.save(product);
-    }
-
-    public Optional<Product> updateProduct(Long id, Product productDetails) {
-        return productRepository.findById(id).map(existingProduct -> {
-            existingProduct.setName(productDetails.getName());
-            existingProduct.setDescription(productDetails.getDescription());
-            existingProduct.setPrice(productDetails.getPrice());
-            return productRepository.save(existingProduct);
-        });
-    }
-
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
     }
 }

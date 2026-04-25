@@ -1,19 +1,9 @@
 package com.ctbe.productservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
-import java.math.BigDecimal;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -22,9 +12,28 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Product name must not be blank")
+    @Column(nullable = false)
     private String name;
 
-    private String description;
+    @Positive(message = "Price must be greater than zero")
+    @Column(nullable = false)
+    private double price;
 
-    private BigDecimal price;
+    // ── Constructors ──────────────────────────────────────────
+    public Product() {}
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // ── Getters and Setters ───────────────────────────────────
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+    
+    public void setId(Long id) { this.id = id; }
+    public void setName(String n) { this.name = n; }
+    public void setPrice(double p) { this.price = p; }
 }
